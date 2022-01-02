@@ -1,11 +1,24 @@
-import { MetaFunction } from "remix";
+import { LoaderFunction, MetaFunction, useLoaderData } from "remix";
+import { getMovies } from "~/api/movies";
+import { Movie } from "~/types";
 
-export const meta: MetaFunction = () => {
-  return { title: "KalFlix", description: "Sample Page" };
+// Server Side
+export const loader: LoaderFunction = async () => {
+  return getMovies();
 };
 
 const FilmsPage = () => {
-  return <div>Movies</div>;
+  const films = useLoaderData<Movie[]>();
+  return (
+    <div>
+      Movies
+      <div>{}</div>
+    </div>
+  );
 };
 
 export default FilmsPage;
+
+export const meta: MetaFunction = () => {
+  return { title: "Movies | KalFlix", description: "Sample Page" };
+};
