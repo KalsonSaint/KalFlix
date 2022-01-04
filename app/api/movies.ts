@@ -8,3 +8,12 @@ export const getMovies = async (title?: string | null) => {
     title ? movie.title.toLowerCase().includes(title.toLowerCase()) : true
   );
 };
+
+export const getMovieById = async (movieId: string ) => {
+  const response = await fetch(
+    `https://ghibliapi.herokuapp.com/films/${movieId}`
+  );
+  const movie: Movie = await response.json();
+
+  return movie;
+};
