@@ -14,7 +14,7 @@ const MoviesPage = () => {
   return (
     <div className="p-16 font-sans">
       <h1 className="text-5xl font-bold text-center">KalFlix</h1>
-      <form className="py-5">
+      <form method="get" className="py-5">
         <label className="font-bold">
           <input
             type="text"

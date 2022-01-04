@@ -9,6 +9,7 @@ import {
 } from "remix";
 import type { MetaFunction } from "remix";
 import styles from "./tailwind.css";
+import { ReactNode } from "react";
 
 export const meta: MetaFunction = () => {
   return { title: "KalFlix", description: "Sample Page" };
@@ -18,7 +19,7 @@ export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }];
 };
 
-export default function App() {
+const Document = ({ children }: { children: ReactNode; title?: string }) => {
   return (
     <html lang="en">
       <head>
@@ -28,11 +29,32 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
+        {children}
         <ScrollRestoration />
         <Scripts />
         {process.env.NODE_ENV === "development" && <LiveReload />}
       </body>
     </html>
   );
+};
+
+export default function App() {
+  return (
+    <Document>
+      <Outlet />
+    </Document>
+  );
 }
+
+export const ErrorBoundary = ({ error }: { error: Error }) => {
+  console.log(error);
+
+  return (
+    <Document title="Error!!!">
+      <div className="error-container">
+        <h1>Something went wrong</h1>
+        <p>{error.message}</p>
+      </div>
+    </Document>
+  );
+};
