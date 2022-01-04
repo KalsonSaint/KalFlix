@@ -6,11 +6,13 @@ import { Movie } from "~/types";
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
   const title = url.searchParams.get("title");
+
   return getMovies(title);
 };
 
 const MoviesPage = () => {
   const movies = useLoaderData<Movie[]>();
+
   return (
     <div className="p-16 font-sans">
       <h1 className="text-5xl font-bold text-center">KalFlix</h1>
