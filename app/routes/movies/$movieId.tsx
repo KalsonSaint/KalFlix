@@ -1,6 +1,7 @@
-import { LoaderFunction, useLoaderData } from "remix";
+import { LoaderFunction, Outlet, useLoaderData } from "remix";
 import invariant from "tiny-invariant";
 import { getMovieById } from "~/api/movies";
+import CharacterList from "~/components/CharacterList";
 import MovieBanner from "~/components/MovieBanner";
 import { Movie } from "~/types";
 
@@ -19,6 +20,12 @@ const Movie = () => {
       <MovieBanner movie={movie} />
       <div className="p-10">
         <p>{movie.description}</p>
+        <div className="flex py-5 space-x-5">
+          <CharacterList characters={movie.characters} />
+          <div className="flex-1">
+            <Outlet />
+          </div>
+        </div>
       </div>
     </div>
   );
