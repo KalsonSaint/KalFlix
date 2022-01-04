@@ -1,3 +1,5 @@
+import { MovieCharacter } from "./MovieCharacter.types";
+
 export type Movie = {
   id: string;
   title: string;
@@ -6,4 +8,5 @@ export type Movie = {
   image: string;
   movie_banner: string;
   people: string[];
+  characters?: MovieCharacter[];
 };

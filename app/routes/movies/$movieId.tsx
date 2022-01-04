@@ -17,6 +17,9 @@ const Movie = () => {
   return (
     <div>
       <MovieBanner movie={movie} />
+      <div className="p-10">
+        <p>{movie.description}</p>
+      </div>
     </div>
   );
 };
