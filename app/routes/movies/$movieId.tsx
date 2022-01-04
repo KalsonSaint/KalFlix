@@ -7,6 +7,8 @@ export const loader: LoaderFunction = async ({ params: { movieId } }) => {
   invariant(movieId, "expected Movie Id");
   const movie = await getMovieById(movieId);
 
+  console.log("Fetchign Movie ...", movie.title);
+
   return movie;
 };
 

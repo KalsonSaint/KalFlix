@@ -34,7 +34,7 @@ const MoviesPage = () => {
             key={movie.id}
             to={movie.id}
             className="hover:shadow-2xl hover:scale-105 hover:font-bold cursor-pointer"
-            prefetch="none"
+            prefetch="intent"
           >
             <div>{movie.title}</div>
             <img src={movie.image} alt={movie.title} />
