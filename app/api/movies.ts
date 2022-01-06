@@ -1,4 +1,4 @@
-import { Movie } from "~/types";
+import { Movie, MovieCharacter } from "~/types";
 
 export const getMovies = async (title?: string | null) => {
   const response = await fetch("https://ghibliapi.herokuapp.com/films");
@@ -21,4 +21,20 @@ export const getMovieById = async (movieId: string) => {
   );
 
   return { ...movie, characters };
+};
+
+export const getMovieCharacter = async (
+  characterId: string
+): Promise<MovieCharacter> => {
+  {
+    const response = await fetch(
+      `https://ghibliapi.herokuapp.com/people/${characterId}`
+    );
+
+    if (!response.ok) {
+      throw response;
+    }
+
+    return response.json();
+  }
 };
