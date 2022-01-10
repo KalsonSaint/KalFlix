@@ -5,7 +5,6 @@ import { MovieCharacter } from "~/types";
 
 export const loader: LoaderFunction = async ({ params }) => {
   invariant(params.characterId, "Expected params.characterId");
-  // throw new Error("Random Error");
 
   return getMovieCharacter(params.characterId);
 };
