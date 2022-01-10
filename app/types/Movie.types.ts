@@ -1,3 +1,4 @@
+import { CommentEntry } from "./CommentEntry.types";
 import { MovieCharacter } from "./MovieCharacter.types";
 
 export type Movie = {
@@ -9,4 +10,5 @@ export type Movie = {
   movie_banner: string;
   people: string[];
   characters?: MovieCharacter[];
+  comments?: CommentEntry[];
 };

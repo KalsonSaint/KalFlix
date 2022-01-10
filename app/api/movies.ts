@@ -1,3 +1,4 @@
+import { getComments } from "./comments";
 import { Movie, MovieCharacter } from "~/types";
 
 export const getMovies = async (title?: string | null) => {
@@ -14,13 +15,14 @@ export const getMovieById = async (movieId: string) => {
     `https://ghibliapi.herokuapp.com/films/${movieId}`
   );
   const movie: Movie = await response.json();
+  const comments = await getComments(movieId);
   const characters = await Promise.all(
     movie.people
       .filter((url) => url !== "https://ghibliapi.herokuapp.com/people")
       .map((url) => fetch(url).then((res) => res.json()))
   );
 
-  return { ...movie, characters };
+  return { ...movie, characters, comments };
 };
 
 export const getMovieCharacter = async (
