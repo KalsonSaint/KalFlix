@@ -1,4 +1,11 @@
-import { Form, Link, LoaderFunction, MetaFunction, useLoaderData } from "remix";
+import {
+  ActionFunction,
+  Form,
+  Link,
+  LoaderFunction,
+  MetaFunction,
+  useLoaderData,
+} from "remix";
 import { getMovies } from "~/api/movies";
 import { Movie } from "~/types";
 
