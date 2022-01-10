@@ -1,9 +1,10 @@
-import { Form } from "remix";
+import { Form, useTransition } from "remix";
 import { CommentEntry } from "~/types";
 
 type CommentListProps = { movieId: string; comments: CommentEntry[] };
 
 const CommentsList = ({ movieId, comments }: CommentListProps) => {
+  const transition = useTransition();
   const inputStyle = `border border-slate-400 rounded py-2 px-3 inline-block w-full`;
 
   return (
@@ -20,7 +21,7 @@ const CommentsList = ({ movieId, comments }: CommentListProps) => {
         ))}
         <div className="p-4 rounded border border-slate-400">
           <Form method="post">
-            <fieldset>
+            <fieldset disabled={transition.state === "submitting"}>
               <label htmlFor="name" className="inline-block my-2">
                 Name:
               </label>
@@ -39,7 +40,9 @@ const CommentsList = ({ movieId, comments }: CommentListProps) => {
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-4 btn"
                 type="submit"
               >
-                Add Comment
+                {transition.state === "submitting"
+                  ? "Adding..."
+                  : "Add Comment"}
               </button>
             </fieldset>
           </Form>
