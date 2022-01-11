@@ -4,6 +4,7 @@ import {
   MetaFunction,
   Outlet,
   redirect,
+  useActionData,
   useLoaderData,
 } from "remix";
 import invariant from "tiny-invariant";
@@ -26,6 +27,20 @@ export const action: ActionFunction = async ({ request, params }) => {
     message: body.get("message") as string,
     movieId: params.movieId,
   };
+
+  // Validation
+  const errors = { name: "", message: "" };
+  if (!comment.name) {
+    errors.name = "Name is required";
+  }
+  if (!comment.message) {
+    errors.message = "Message is required";
+  }
+
+  if (errors.name || errors.message) {
+    const values = Object.fromEntries(body);
+    return { errors, values };
+  }
   await addComment(comment);
 
   return redirect(`/movies/${params.movieId}`);
